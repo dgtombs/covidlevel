@@ -1,6 +1,6 @@
 <?php
 
-$url = 'https://data.cdc.gov/resource/3nnm-4jni.json?state=Florida&county=Alachua%20County&$order=date_updated%20DESC&$limit=1';
+$url = 'https://data.cdc.gov/resource/akn2-qxic.json?state=Florida&county=Alachua%20County&$order=report_date%20DESC&$limit=1';
 $to_addresses=$argv[1];
 
 $ch = curl_init($url);
@@ -18,13 +18,13 @@ $latest_result = $decoded[0];
 $message = <<<EOT
 Hi,
 
-The current CDC community level for Alachua County is: $latest_result->covid_19_community_level.
+The current COVID-19 hospital admission level for Alachua County is: $latest_result->total_adm_all_covid_confirmed_level.
 
-It was last updated on: $latest_result->date_updated.
+It was last updated on: $latest_result->report_date.
 
 <3,
 David's Script
 EOT;
 
-mail($to_addresses, 'Current Community Level', $message);
+mail($to_addresses, 'Current COVID-19 Level', $message);
 
